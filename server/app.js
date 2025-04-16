@@ -1,1 +1,1 @@
-// Express app config
+module.exports = app;
