@@ -1,43 +1,39 @@
-// src/pages/TaskListPage.tsx
-import { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
 import TaskFilterBar from "../components/TaskFilterBar";
 import TaskItem from "../components/TaskItem";
-import API from "../services/axios"; // axiosインスタンス
-
-type Task = {
-  id: string;
-  title: string;
-  dueDate: string;
-  priority: "high" | "medium" | "low";
-  isCompleted: boolean;
-};
 
 export default function TaskListPage() {
-  const [tasks, setTasks] = useState<Task[]>([]);
-  
-  useEffect(() => {
-    API.get("/tasks")
-      .then((res) => setTasks(res.data))
-      .catch((err) => console.error("タスク取得エラー", err));
-  }, []);
-
   return (
-    <div className="flex min-h-screen bg-gray-100">
+    <div className="flex min-h-screen bg-gray-50 text-gray-900">
       <Sidebar />
       <main className="flex-1 p-6">
-        <h1 className="text-2xl font-bold mb-4">TODOリスト</h1>
+        <h1 className="text-3xl font-bold mb-6">TODOリスト</h1>
         <TaskFilterBar />
-        <div className="mt-4 space-y-2">
-          {tasks.map((t) => (
-            <TaskItem
-              key={t.id}
-              title={t.title}
-              dueDate={t.dueDate}
-              priority={t.priority}
-              completed={t.isCompleted}
-            />
-          ))}
+        <div className="mt-6 space-y-3">
+          <TaskItem
+            title="レポートを作成"
+            dueDate="2024年4月25日"
+            priority="high"
+            completed={false}
+          />
+          <TaskItem
+            title="ミーティングの準備"
+            dueDate="2024年4月27日"
+            priority="medium"
+            completed={false}
+          />
+          <TaskItem
+            title="買い物に行く"
+            dueDate="2024年4月30日"
+            priority="low"
+            completed={true}
+          />
+          <TaskItem
+            title="プレゼンテーションの資料の見直し"
+            dueDate="2024年4月20日"
+            priority="high"
+            completed={true}
+          />
         </div>
       </main>
     </div>
