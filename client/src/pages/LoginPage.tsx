@@ -11,7 +11,8 @@ export default function LoginPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const url = isLogin ? "/api/auth/login" : "/api/auth/register";
+    // ✅ 修正後のコード（1行だけ変えます！）
+    const url = isLogin ? "/auth/login" : "/auth/register";
     const payload = isLogin ? { email, password } : { name, email, password };
 
     try {
