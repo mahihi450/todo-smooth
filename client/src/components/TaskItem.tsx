@@ -1,11 +1,16 @@
-interface TaskItemProps {
+interface Props {
+  id: string;
   title: string;
   dueDate: string;
   priority: "high" | "medium" | "low";
   completed: boolean;
+  onToggle: (id: string, done: boolean) => void;
+  onDelete: (id: string) => void;
 }
 
-export default function TaskItem({ title, dueDate, priority, completed }: TaskItemProps) {
+export default function TaskItem({
+  id, title, dueDate, priority, completed, onToggle, onDelete
+}: Props){
   const priorityMap = {
     high: { label: "高", color: "bg-red-500" },
     medium: { label: "中", color: "bg-yellow-400" },
@@ -15,7 +20,11 @@ export default function TaskItem({ title, dueDate, priority, completed }: TaskIt
   return (
     <div className="flex items-center justify-between bg-white px-4 py-3 rounded shadow-sm border border-gray-200">
       <div className="flex items-center gap-3">
-        <input type="checkbox" checked={completed} readOnly />
+        <input
+          type="checkbox"
+          checked={completed}
+          onChange={() => onToggle(id, completed)}
+        />
         <span className={`${completed ? "line-through text-gray-400" : ""} text-lg`}>
           {title}
         </span>
@@ -25,9 +34,9 @@ export default function TaskItem({ title, dueDate, priority, completed }: TaskIt
         <span className={`text-white px-2 py-1 rounded ${priorityMap[priority].color}`}>
           {priorityMap[priority].label}
         </span>
-        <button className="text-blue-500 hover:underline">編集</button>
-        <button className="text-red-500 hover:underline">🗑</button>
+        <button className="text-red-500 hover:underline" onClick={() => onDelete(id)}>🗑</button>
       </div>
     </div>
-  )
+  );
+  
 };
