@@ -49,7 +49,7 @@ export default function TaskListPage() {
   return (
     <div className="flex min-h-screen bg-slate-100 text-gray-900">
     <Sidebar />
-    <main className="flex-1 p-6">
+    <main className="flex-1 p-8 bg-white rounded-l-2xl shadow-md m-4">
       <h1 className="text-3xl font-bold mb-6 text-blue-600">🎯 あなたのTODOリスト</h1>
       <TaskFilterBar 
        value={newTask}

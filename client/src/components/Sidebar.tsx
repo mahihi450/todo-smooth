@@ -1,6 +1,6 @@
 export default function Sidebar() {
   return (
-    <aside className="w-64 bg-black text-white p-6 space-y-6 hidden md:block">
+    <aside className="w-64 bg-gradient-to-b from-gray-800 to-gray-900 text-white p-6 shadow-lg hidden md:block rounded-r-2xl">
       <h2 className="text-2xl font-bold">TODO</h2>
       <ul className="space-y-2 text-lg">
         <li className="hover:text-blue-400 cursor-pointer">すべてのタスク</li>
