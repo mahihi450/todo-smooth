@@ -47,30 +47,44 @@ export default function TaskListPage() {
   }, []);
 
   return (
-    <div className="flex min-h-screen bg-gray-50 text-gray-900">
-      <Sidebar />
-      <main className="flex-1 p-6">
-        <h1 className="text-3xl font-bold mb-6">TODOリスト</h1>
-        <TaskFilterBar
-          value={newTask}
-          onChange={setNewTask}
-          onAdd={addTask}
+    <div className="flex min-h-screen bg-slate-100 text-gray-900">
+    <Sidebar />
+    <main className="flex-1 p-6">
+      <h1 className="text-3xl font-bold mb-6 text-blue-600">🎯 あなたのTODOリスト</h1>
+      <TaskFilterBar 
+       value={newTask}
+       onChange={setNewTask}
+       onAdd={addTask}/>
+      <div className="mt-6 space-y-4">
+        <TaskItem
+          id="1"
+          title="レポートを作成"
+          dueDate="2024-04-25"
+          priority="high"
+          completed={false}
+          onToggle={() => {}}
+          onDelete={() => {}}
         />
-        <div className="mt-6 space-y-3">
-          {tasks.map((task) => (
-            <TaskItem
-              key={task._id}
-              id={task._id}
-              title={task.title}
-              dueDate={task.dueDate}
-              priority={task.priority}
-              completed={task.isCompleted}
-              onToggle={toggleComplete}
-              onDelete={deleteTask}
-            />
-          ))}
-        </div>
-      </main>
-    </div>
+        <TaskItem
+          id="2"
+          title="会議の準備"
+          dueDate="2024-04-28"
+          priority="medium"
+          completed={true}
+          onToggle={() => {}}
+          onDelete={() => {}}
+        />
+        <TaskItem
+          id="3"
+          title="散歩"
+          dueDate="2024-05-01"
+          priority="low"
+          completed={false}
+          onToggle={() => {}}
+          onDelete={() => {}}
+        />
+      </div>
+    </main>
+  </div>
   );
 }

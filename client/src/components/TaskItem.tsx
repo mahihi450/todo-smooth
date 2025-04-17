@@ -12,9 +12,9 @@ export default function TaskItem({
   id, title, dueDate, priority, completed, onToggle, onDelete
 }: Props){
   const priorityMap = {
-    high: { label: "高", color: "bg-red-500" },
-    medium: { label: "中", color: "bg-yellow-400" },
-    low: { label: "低", color: "bg-green-500" },
+    high: { label: "高", color: "bg-red-100 text-red-700" },
+    medium: { label: "中", color: "bg-yellow-100 text-yellow-700" },
+    low: { label: "低", color: "bg-green-100 text-green-700" },
   };
 
   return (
@@ -34,7 +34,7 @@ export default function TaskItem({
         <span className={`text-white px-2 py-1 rounded ${priorityMap[priority].color}`}>
           {priorityMap[priority].label}
         </span>
-        <button className="text-red-500 hover:underline" onClick={() => onDelete(id)}>🗑</button>
+        <button className="text-red-500 hover:text-red-700" onClick={() => onDelete(id)}>🗑</button>
       </div>
     </div>
   );
