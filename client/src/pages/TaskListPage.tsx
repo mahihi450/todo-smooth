@@ -1,8 +1,27 @@
+// src/pages/TaskListPage.tsx
+import { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
 import TaskFilterBar from "../components/TaskFilterBar";
 import TaskItem from "../components/TaskItem";
+import API from "../services/axios"; // axiosインスタンス
+
+type Task = {
+  id: string;
+  title: string;
+  dueDate: string;
+  priority: "high" | "medium" | "low";
+  isCompleted: boolean;
+};
 
 export default function TaskListPage() {
+  const [tasks, setTasks] = useState<Task[]>([]);
+  
+  useEffect(() => {
+    API.get("/tasks")
+      .then((res) => setTasks(res.data))
+      .catch((err) => console.error("タスク取得エラー", err));
+  }, []);
+
   return (
     <div className="flex min-h-screen bg-gray-100">
       <Sidebar />
@@ -10,24 +29,15 @@ export default function TaskListPage() {
         <h1 className="text-2xl font-bold mb-4">TODOリスト</h1>
         <TaskFilterBar />
         <div className="mt-4 space-y-2">
-          <TaskItem
-            title="レポートを作成"
-            dueDate="2024-04-25"
-            priority="high"
-            completed={false}
-          />
-          <TaskItem
-            title="ミーティングの準備"
-            dueDate="2024-04-27"
-            priority="medium"
-            completed={false}
-          />
-          <TaskItem
-            title="買い物に行く"
-            dueDate="2024-04-30"
-            priority="low"
-            completed={true}
-          />
+          {tasks.map((t) => (
+            <TaskItem
+              key={t.id}
+              title={t.title}
+              dueDate={t.dueDate}
+              priority={t.priority}
+              completed={t.isCompleted}
+            />
+          ))}
         </div>
       </main>
     </div>
