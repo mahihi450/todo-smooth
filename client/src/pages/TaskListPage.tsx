@@ -13,7 +13,7 @@ type Task = {
 };
 
 export default function TaskListPage() {
-  const [tasks, setTasks] = useState<Task[]>([]);
+  const [, setTasks] = useState<Task[]>([]);
   const [newTask, setNewTask] = useState("");
 
   const fetchTasks = async () => {
@@ -32,16 +32,7 @@ export default function TaskListPage() {
     fetchTasks();
   };
 
-  const toggleComplete = async (id: string, done: boolean) => {
-    await API.put(`/tasks/${id}`, { isCompleted: !done });
-    fetchTasks();
-  };
-
-  const deleteTask = async (id: string) => {
-    await API.delete(`/tasks/${id}`);
-    fetchTasks();
-  };
-
+ 
   useEffect(() => {
     fetchTasks();
   }, []);
