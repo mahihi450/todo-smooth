@@ -50,7 +50,7 @@ export default function TaskListPage() {
     <div className="flex min-h-screen bg-slate-100 text-gray-900   backgroundColor: #81c784">
     <Sidebar />
     <main className="flex-1 p-8 bg-white rounded-l-2xl shadow-md m-4">
-      <h1 className="text-3xl font-bold mb-6 text-blue-600">🎯 あなたのTODOリスト</h1>
+      <h1 className="text-3xl font-bold mb-6 text-blue-600">🎯 あなたの</h1>
       <TaskFilterBar 
        value={newTask}
        onChange={setNewTask}
